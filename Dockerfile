@@ -3,7 +3,7 @@ FROM node:lts-alpine3.17 AS build
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package.json  ./
 
 RUN npm install
 
