@@ -1,0 +1,22 @@
+name: CI/CD Next JS Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout version node
+      uses: actions/checkout@v3
+
+    - name: Install package dependencies
+      run: npm Install
+    
+    - name: Building the project
+      run: npm run build
