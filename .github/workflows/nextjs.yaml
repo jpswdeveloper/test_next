@@ -15,8 +15,15 @@ jobs:
     - name: Checkout version node
       uses: actions/checkout@v3
 
-    - name: Install package dependencies
-      run: npm install
-    
-    - name: Building the project
-      run: npm run build
+    - name: Authenthicate with Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD}} 
+
+    - name: Build and push Docker Image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nextjs-test:latest
